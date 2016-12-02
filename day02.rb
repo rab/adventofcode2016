@@ -39,6 +39,32 @@
 # So, in this example, the bathroom code is 1985.
 #
 # Your puzzle input is the instructions from the document you found at the front desk. What is the bathroom code?
+#
+# --- Part Two ---
+#
+# You finally arrive at the bathroom (it's a several minute walk from the lobby so visitors can
+# behold the many fancy conference rooms and water coolers on this floor) and go to punch in the
+# code. Much to your bladder's dismay, the keypad is not at all like you imagined it. Instead, you
+# are confronted with the result of hundreds of man-hours of bathroom-keypad-design meetings:
+#
+#     1
+#   2 3 4
+# 5 6 7 8 9
+#   A B C
+#     D
+# You still start at "5" and stop when you're at an edge, but given the same instructions as
+# above, the outcome is very different:
+#
+# You start at "5" and don't move at all (up and left are both edges), ending at 5.
+# Continuing from "5", you move right twice and down three times (through "6", "7", "B", "D",
+# "D"), ending at D.
+# Then, from "D", you move five more times (through "D", "B", "C", "C", "B"), ending at B.
+# Finally, after five more moves, you end at 3.
+# So, given the actual keypad layout, the code would be 5DB3.
+#
+# Using the same instructions in your puzzle input, what is the correct bathroom code?
+#
+# Although it hasn't changed, you can still get your puzzle input.
 
 require_relative 'input'
 
@@ -47,7 +73,7 @@ input = Input.for_day(day)
 
 # puts "solving day #{day} from input\n#{input}"
 
-move = {
+move_square = {
   '1' => { 'U' => '1', 'D' => '4', 'L' => '1', 'R' => '2' },
   '2' => { 'U' => '2', 'D' => '5', 'L' => '1', 'R' => '3' },
   '3' => { 'U' => '3', 'D' => '6', 'L' => '2', 'R' => '3' },
@@ -58,12 +84,34 @@ move = {
   '8' => { 'U' => '5', 'D' => '8', 'L' => '7', 'R' => '9' },
   '9' => { 'U' => '6', 'D' => '9', 'L' => '8', 'R' => '9' },
 }
+move_diamond = {
+  '1' => { 'U' => '1', 'D' => '3', 'L' => '1', 'R' => '1' },
+  '2' => { 'U' => '2', 'D' => '6', 'L' => '2', 'R' => '3' },
+  '3' => { 'U' => '1', 'D' => '7', 'L' => '2', 'R' => '4' },
+  '4' => { 'U' => '4', 'D' => '8', 'L' => '3', 'R' => '4' },
+  '5' => { 'U' => '5', 'D' => '5', 'L' => '5', 'R' => '6' },
+  '6' => { 'U' => '2', 'D' => 'A', 'L' => '5', 'R' => '7' },
+  '7' => { 'U' => '3', 'D' => 'B', 'L' => '6', 'R' => '8' },
+  '8' => { 'U' => '4', 'D' => 'C', 'L' => '7', 'R' => '9' },
+  '9' => { 'U' => '9', 'D' => '9', 'L' => '8', 'R' => '9' },
+  'A' => { 'U' => '6', 'D' => 'A', 'L' => 'A', 'R' => 'B' },
+  'B' => { 'U' => '7', 'D' => 'D', 'L' => 'A', 'R' => 'C' },
+  'C' => { 'U' => '8', 'D' => 'C', 'L' => 'B', 'R' => 'C' },
+  'D' => { 'U' => 'B', 'D' => 'D', 'L' => 'D', 'R' => 'D' },
+}
 
-button = '5'
+square = ''
+button_square  = '5'
+diamond = ''
+button_diamond = '5'
 input.each_line do |line|
   line.chomp.each_char do |dir|
-    button = move[button][dir]
+    button_square  = move_square[button_square][dir]
+    button_diamond = move_diamond[button_diamond][dir]
   end
-  print button
+  square << button_square
+  diamond << button_diamond
 end
-puts
+
+puts "Square:  #{square}"
+puts "Diamond: #{diamond}"
