@@ -1,4 +1,5 @@
 /.session
+/day*_input.txt
 *.gem
 *.rbc
 /.config
