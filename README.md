@@ -6,10 +6,15 @@ Back again for another year, the little [Advent of Code] site that has a new pai
 
 My solutions for the original 2015 installment of the Advent of Code is in the repo: [rab/adventofcode2015](https://github.com/rab/adventofcode2015)
 
-When I was recognized on the [Leaderboard]
+My Personal [Leaderboard] stats:
 
-Day | Position
---- | --------
+<pre>
+      --Part 1---   --Part 2---
+Day   Rank  Score   Rank  Score
+  3     60     41     63     38
+  2   3537      0   2997      0
+  1   6753      0   5003      0
+</pre>
 
 
 Here are some of the participants using Ruby from the [Cincinnati Ruby Brigade] or who I noticed on the [Leaderboard]:
