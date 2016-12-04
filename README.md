@@ -11,11 +11,11 @@ My Personal [Leaderboard] stats:
 <pre>
       --Part 1---   --Part 2---
 Day   Rank  Score   Rank  Score
+  4     99      2     73     28
   3     60     41     63     38
   2   3537      0   2997      0
   1   6753      0   5003      0
 </pre>
-
 
 Here are some of the participants using Ruby from the [Cincinnati Ruby Brigade] or who I noticed on the [Leaderboard]:
 
