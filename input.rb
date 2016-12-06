@@ -1,3 +1,12 @@
+# To simplify starting a new day on the Advent of Code challenge.
+#
+# Prerequisite: the presence of the ./.session file containing the "session=19827364918273..."
+#   value for the cookie.
+#
+# Returns the cached input or retrieves and caches the indicated day's input.
+#
+# Note that some days may not have an input file if the input was specified in the description.
+
 require 'uri'
 require 'net/http'
 

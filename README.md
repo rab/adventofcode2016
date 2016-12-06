@@ -4,6 +4,8 @@ Solutions for the 2016 edition of the Advent of Code - http://adventofcode.com/2
 
 Back again for another year, the little [Advent of Code] site that has a new pair of problems to solve each new day (i.e., midnight Eastern time) and this repository holds my solutions using [ruby](http://ruby-lang.org)
 
+There are a few files that help with the mechanics of the challenge itself. The value for the `session` cookie from teh site is stored in the `./.session` file. The `day_prep.rb` retrieves the challenge description and builds the initial solution file using the `day_template.rb`. The input for the day's challenge is retrieved (and cached!) using code from the module defined in `input.rb`.
+
 My solutions for the original 2015 installment of the Advent of Code is in the repo: [rab/adventofcode2015](https://github.com/rab/adventofcode2015)
 
 My Personal [Leaderboard] stats:
