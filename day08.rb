@@ -73,6 +73,8 @@ input = Input.for_day(day)
 
 # puts "solving day #{day} from input\n#{input.inspect}"
 
+animate = ARGV && ARGV.shift == '-a'
+
 class Display
   def initialize(cols=50, rows=6)
     @display = Array.new(rows) { Array.new(cols, '.') }
@@ -126,7 +128,7 @@ end
 # EOL
 
 display = Display.new(50,6)
-
+clear = `clear`
 input.each_line do |line|
   case line
   when /^rect (\d+)x(\d+)$/
@@ -139,7 +141,10 @@ input.each_line do |line|
     fail "Bad Command? #{line}"
   end
 
-  # puts display, nil
+  if animate
+    puts clear, display, display.count ; sleep 0.05
+  end
 end
 
+puts clear if animate
 puts display, display.count
