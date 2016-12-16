@@ -13,6 +13,13 @@ My Personal [Leaderboard] stats:
 <pre>
       --Part 1---   --Part 2---
 Day   Rank  Score   Rank  Score
+ 16   1415      0   1298      0
+ 15   1274      0   1260      0
+ 14   1339      0   1183      0
+ 13   1479      0   1363      0
+ 12   1841      0   1813      0
+ 11
+ 10   3092      0   3040      0
   9    387      0    193      0  A couple of off-by-one errors slowed me down
   8   2224      0   2177      0
   7    210      0    330      0  This one really gave me trouble. 3rd answer for * and 2nd for **
