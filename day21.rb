@@ -117,6 +117,67 @@ class Password
     @pw.dup
   end
 
+  def unperform(command)
+    case command
+    when /move position (\d+) to position (\d+)/
+      from = $1.to_i
+      to = $2.to_i
+      c = @pw.slice!(from,1)
+      @pw[to,0] = c
+
+    when /reverse positions (\d+) through (\d+)/
+      from = $1.to_i
+      to = $2.to_i
+      @pw[from..to] = @pw[from..to].reverse
+
+    when /rotate based on position of letter (.)/
+      # FIXME: eval pos of c
+      #  0 1 2 3
+      # --------
+      #  6 7 4 5
+      c = $1
+      p = @pw.index(c)
+      if p.even?
+        :bad
+      else
+        i = { 1 => [0,6],
+              3 => [1,7],
+              5 => [2,4],
+              7 => [3,5],
+            }[p]
+        # rotate right by: .all? i-p
+      end
+
+      i = 1 + p
+      i += 1 if p >= 4
+      i = i % @pw.length
+      @pw[0,0] = @pw.slice!(-i,i)
+
+    when /rotate left (\d+) steps?/
+      i = $1.to_i
+      @pw[0,0] = @pw.slice!(-i,i)
+
+    when /rotate right (\d+) steps?/
+      i = $1.to_i
+      @pw << @pw.slice!(0,i)
+
+    when /swap letter (.) with letter (.)/
+      from = $1
+      to = $2
+      @pw.tr!("#{from}#{to}", "#{to}#{from}")
+
+    when /swap position (\d+) with position (\d+)/
+      from = $1.to_i
+      to = $2.to_i
+      @pw[to,1], @pw[from,1] = @pw[from,1], @pw[to,1]
+
+    else
+      fail "Unrecognized: #{command}"
+    end
+
+    @pw
+  end
+
 end
 
 # input = <<-EOL
@@ -141,3 +202,15 @@ end
 # fail "expected #{expected}" unless expected == pw.to_s
 
 # Your puzzle answer was baecdfgh.
+
+# --- Part Two ---
+
+final = 'fbgdceah'
+
+sc = Password.new(final)
+
+input.each_line.reverse_each do |command|
+  command.chomp!
+  print "#{sc} = #{command} <- "
+  puts sc.unperform(command)
+end
